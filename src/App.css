@@ -1,0 +1,242 @@
+.App {
+  text-align: center;
+}
+
+.title-1 {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 70px;
+  font-weight:normal;
+  }
+
+.title-2 {
+  margin-top: 50px;
+  font-size: 50px;
+  font-weight:normal;
+  margin-left: 50px;
+}
+
+.continue {
+  margin-top: 70px;
+  font-weight:normal;
+  margin-left: 50px;
+}
+
+.instructions {
+  font-weight:normal;
+  margin-left: 50px;
+  margin-right: 100px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.option-name {
+  margin-left: 50px;
+  margin-right: 100px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+
+.warning {
+  color: red;
+  margin-left: 50px;
+}
+
+.category-name {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: -90px;
+  margin-right: -40px;
+}
+
+.next-button {
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
+.submit-button {
+  margin: auto;
+  display:block;
+  margin-bottom: 50px;
+}
+
+.confirm-button {
+  margin: auto;
+  display:block;
+  margin-top: 75px;
+}
+
+.submit-abs{
+  position: absolute;
+  left: 380px;
+  top: 330px;
+}
+
+.horizontal-slider {
+  width: 100%;
+  max-width: 500px;
+  height: 20vh;
+  margin: auto;
+}
+
+
+.horizontal-slider:disabled, .horizontal-slider[disabled] {
+  background: gray;
+}
+.example-thumb {
+  cursor: pointer;
+  position: absolute;
+  z-index: 100;
+  background: transparent;
+  border: 5px solid #3774ff;
+  border-radius: 100%;
+  display: block;
+  box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
+}
+
+.example-thumb.active {
+  background-color: grey;
+}
+.example-track {
+  position: relative;
+  background: #ddd;
+}
+.example-track.example-track-0 {
+  background: #83a9ff;
+}
+
+.horizontal-slider .example-track {
+  top: 20px;
+  height: 4px;
+}
+.horizontal-slider .example-thumb {
+  top: 12px;
+  width: 10px;
+  outline: none;
+  height: 10px;
+  line-height: 38px;
+}
+
+.table-border {
+  border: 1px solid black;
+  background-color: white;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.margin-op2 {
+  margin-left: -330px;
+}
+.margin-op1 {
+  margin-left: 50px;
+}
+
+.dropdown-slidedown {
+  border: 1px solid gray;
+  border-radius: 4px;
+  width: 130px;
+  max-height: 40em;
+  background: whitesmoke;
+  margin-left:5px;
+  margin-right: 10px;
+}
+
+.option-box {
+  position: absolute;
+  overflow: visible;
+  top: 250px;
+  width: 1000px;
+  height: 700px;
+  bottom: 50px;
+  z-index: 100;
+}
+
+.box {
+  border: 1px solid black;
+  margin-left: 50px;
+  background: lightgray;
+  width: 330px;
+  height: 200px;
+  position: relative;
+  overflow: visible;
+  float: left;
+}
+
+.dialog-box {
+  border: 1px solid black;
+  background: lightgray;
+  position:absolute;
+  top: 300px;
+  left: 250px;
+  width: 335px;
+  height: 250px;
+  bottom: 50px;
+}
+
+
+.radio-option {
+  display: inline-block;
+  position: relative;
+  top: 50px;
+  left: 20px;
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.under {
+  margin-top: 5px;
+}
+
+.radio-title {
+  display: inline-block;
+  position: relative;
+  top: 50px;
+  left: 20px;
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 40px;
+}
+
+.option-title {
+  display: inline-block;
+  margin-left: 30px;
+  margin-right: 20px;
+  margin-top: 25px;
+  font-weight:bold;
+  position:absolute;
+}
+
+.option-attr{
+  display: inline-block;
+  margin-left: 30px;
+  padding-top: 30px;
+  top: 50px;
+  position: relative;
+}
+
+.option-fill{
+  display: inline-block;
+  position: relative;
+}
+
+.input-with-hint{
+  margin-top:10px;
+  margin-left:10px;
+}
+
+.compare-options-body{
+  padding-bottom: 510px;
+}
+
+.table-no-border {
+  padding-right:60px;
+  padding-left:60px;
+}
+
+.table-button {
+  width:100%;
+  background-color: whitesmoke;
+}
