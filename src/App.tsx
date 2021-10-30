@@ -5,7 +5,8 @@ import StartExperiment from './components/StartExperiment';
 import * as constants from './constants.js'
 import FirstStageWrapper from './components/FirstStageWrapper';
 import SecondStageWrapper from './components/SecondStageWrapper';
-import fire from './firebase'
+//import database from './firebase'
+import { useConcertTickets } from './firebase';
 
 
 const FIRST_TITLE = 'Welcome'
@@ -52,7 +53,7 @@ export class App extends React.PureComponent<{}, AppState> {
     if(this.state.flow === 1){
       this.setState({max_id: this.setMaxCategoryId()})
     }
-    
+    console.log(useConcertTickets())
   }
 
   componentDidUpdate(){
@@ -96,8 +97,6 @@ export class App extends React.PureComponent<{}, AppState> {
       client_catigories: new_client_categories,
       categories: await api.getProperties(new_client_categories)
     })
-    let fireBaseData = fire.database().ref('new client categories').orderByKey()
-    fire.database().ref('new client categories').push(new_client_categories)
   }
 
   setFlow = () => {

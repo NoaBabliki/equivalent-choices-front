@@ -1,7 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import 'firebase/database'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+
+import { useState } from "react";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,5 +17,20 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const fire = initializeApp(firebaseConfig);
-export default fire;
+const app = initializeApp(firebaseConfig);
+// Get a reference to the database service
+const database = getDatabase(app);
+
+export default database;
+
+export function useConcertTickets(){
+  const [value, setValue] = useState(null)
+  const starCountRef = ref('0');
+  starCountRef.on('value', (snapshot) => {
+    const data = snapshot.val();
+    if (data !== value){
+      setValue(data)
+    }
+  })
+  return value
+}
