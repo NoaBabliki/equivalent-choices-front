@@ -7,7 +7,7 @@ import DialogBox from './DialogBox'
 
 const INSTRUCTIONS = 'Please fill in the missing value to make the options of equal value.'
 const DEFAULT_MSG = 'Please choose'
-const WARNING_MAG = 'Please choose a value to make the options equivalent'
+//const WARNING_MAG = 'Please choose a value to make the options equivalent'
 
 export class CompareTwoOptions extends React.PureComponent{
 
