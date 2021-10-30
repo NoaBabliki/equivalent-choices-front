@@ -5,9 +5,7 @@ import StartExperiment from './components/StartExperiment';
 import * as constants from './constants.js'
 import FirstStageWrapper from './components/FirstStageWrapper';
 import SecondStageWrapper from './components/SecondStageWrapper';
-//import database from './firebase'
-import { useConcertTickets } from './firebase';
-
+//firebase imports:
 
 const FIRST_TITLE = 'Welcome'
 const SECOND_TITLE_PART_1 = 'What do you prefer?'
@@ -53,7 +51,7 @@ export class App extends React.PureComponent<{}, AppState> {
     if(this.state.flow === 1){
       this.setState({max_id: this.setMaxCategoryId()})
     }
-    console.log(useConcertTickets())
+
   }
 
   componentDidUpdate(){
