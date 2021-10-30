@@ -4,8 +4,6 @@ import {getDatabase, ref} from 'firebase/database'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-import { useState } from "react";
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAihx1WV44V2-GzGMjujkm4yfqHjWmvZAs",
@@ -24,12 +22,12 @@ const database = getDatabase(app);
 export default database;
 
 export function useConcertTickets(){
-  const [value, setValue] = useState(null)
+  let value;
   const starCountRef = ref('0');
   starCountRef.on('value', (snapshot) => {
     const data = snapshot.val();
     if (data !== value){
-      setValue(data)
+      value = data
     }
   })
   return value
