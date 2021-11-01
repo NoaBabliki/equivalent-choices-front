@@ -30,18 +30,18 @@ const DatabaseActions = (props) => {
         });
     }
 
-    const writeClientChoises = (db, item) => {
+    const writeClientChoises = (sub_db, item) => {
         const db = getDatabase();
-        set(ref(db, db + '/' + item.id), {
+        set(ref(db, sub_db + '/' + item.id), {
           id: item.id,
           name: item.name,
           rating : item.rating
         });
     }
 
-    const writeOptionPreferences = (db, item) => {
+    const writeOptionPreferences = (sub_db, item) => {
         const db = getDatabase();
-        set(ref(db, db + '/' + item.id), {
+        set(ref(db, sub_db + '/' + item.id), {
             id: item.id,
             cur_match: item.cur_match,
             cur_set: item.cur_set,
