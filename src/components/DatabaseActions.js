@@ -26,7 +26,7 @@ const DatabaseActions = (props) => {
         const starCountRef = ref(db, + sub_db);
         onValue(starCountRef, (snapshot) => {
         const data = snapshot.val();
-        updateStarCount(postElement, data);
+        console.log(data);
         });
     }
 
