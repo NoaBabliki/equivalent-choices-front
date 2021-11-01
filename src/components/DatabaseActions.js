@@ -1,9 +1,8 @@
 import { initializeApp } from "firebase/app"
 import 'firebase/database'
 import { getDatabase, ref, child, get, onValue, set } from "firebase/database";
-
-const FIREBASE_CONFIG = '${{ secrets.FIREBASE_CONFIG }}'
-const FIREBASE_APP = initializeApp(FIREBASE_CONFIG)
+const admin = require("firebase-admin")
+const FIREBASE_APP = initializeApp(admin.config().firebase)
 
 const DatabaseActions = (props) => {
     
