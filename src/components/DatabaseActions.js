@@ -1,6 +1,6 @@
-import firebase from 'firebase/app'
+import { initializeApp } from "firebase/app"
 const FIREBASE_CONFIG = '${{ secrets.FIREBASE_CONFIG }}'
-firebase.initializeApp(FIREBASE_CONFIG)
+const FIREBASE_APP = initializeApp(FIREBASE_CONFIG)
 import 'firebase/database'
 import { getDatabase, ref, child, get, onValue, set } from "firebase/database";
 
@@ -12,7 +12,7 @@ const DatabaseActions = (props) => {
     const WRITE_PREFERENCES = 4
 
     const readOnce = (sub_db) => {
-        const dbRef = ref(getDatabase());
+        const dbRef = ref(getDatabase(FIREBASE_APP));
         get(child(dbRef, `${sub_db}`)).then((snapshot) => {
         if (snapshot.exists()) {
             console.log(snapshot.val());
@@ -25,7 +25,7 @@ const DatabaseActions = (props) => {
     }
 
     const read = (sub_db) => {
-        const db = getDatabase();
+        const db = getDatabase(FIREBASE_APP);
         const starCountRef = ref(db, + sub_db);
         onValue(starCountRef, (snapshot) => {
         const data = snapshot.val();
@@ -34,7 +34,7 @@ const DatabaseActions = (props) => {
     }
 
     const writeClientChoises = (sub_db, item) => {
-        const db = getDatabase();
+        const db = getDatabase(FIREBASE_APP);
         set(ref(db, sub_db + '/' + item.id), {
           id: item.id,
           name: item.name,
@@ -43,7 +43,7 @@ const DatabaseActions = (props) => {
     }
 
     const writeOptionPreferences = (sub_db, item) => {
-        const db = getDatabase();
+        const db = getDatabase(FIREBASE_APP);
         set(ref(db, sub_db + '/' + item.id), {
             id: item.id,
             cur_match: item.cur_match,
