@@ -10,7 +10,7 @@ const DatabaseActions = (props) => {
 
     const readOnce = (sub_db) => {
         const dbRef = ref(getDatabase());
-        get(child(dbRef, `users/${sub_db}`)).then((snapshot) => {
+        get(child(dbRef, `${sub_db}`)).then((snapshot) => {
         if (snapshot.exists()) {
             console.log(snapshot.val());
         } else {
