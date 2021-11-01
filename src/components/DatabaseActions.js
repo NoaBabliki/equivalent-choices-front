@@ -1,11 +1,12 @@
 import { initializeApp } from "firebase/app"
-const FIREBASE_CONFIG = '${{ secrets.FIREBASE_CONFIG }}'
-const FIREBASE_APP = initializeApp(FIREBASE_CONFIG)
 import 'firebase/database'
 import { getDatabase, ref, child, get, onValue, set } from "firebase/database";
 
-const DatabaseActions = (props) => {
+const FIREBASE_CONFIG = '${{ secrets.FIREBASE_CONFIG }}'
+const FIREBASE_APP = initializeApp(FIREBASE_CONFIG)
 
+const DatabaseActions = (props) => {
+    
     const READ_ONCE = 1
     const READ = 2
     const WRITE_CHOICES = 3
