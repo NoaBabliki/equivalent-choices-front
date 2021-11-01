@@ -1,3 +1,6 @@
+import firebase from 'firebase/app'
+const FIREBASE_CONFIG = '${{ secrets.FIREBASE_CONFIG }}'
+firebase.initializeApp(FIREBASE_CONFIG)
 import 'firebase/database'
 import { getDatabase, ref, child, get, onValue, set } from "firebase/database";
 
