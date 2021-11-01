@@ -1,5 +1,6 @@
 import React from 'react'
 import '../App.css'
+import DatabaseActions from './DatabaseActions'
 
 const CLASS_NAME_WELCOME = 'title-1'
 const CLASS_NAME_INSTRUCTIONS = 'title-2'
@@ -20,6 +21,10 @@ export class StartExperiment extends React.PureComponent {
             <h2 className='instructions'>{instructions}</h2>
             <h2 className='continue'>Press the 'next' button to continue</h2>
             {this.nextButton()}
+            <DatabaseActions
+            action={1}
+            db={'0'}>
+            </DatabaseActions>
             </div>
         )
     }
