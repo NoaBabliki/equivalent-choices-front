@@ -16,13 +16,13 @@ jobs:
       - name: Create env file
         run: |
           touch .env.local
-          echo REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }} >> .env.local
-          echo REACT_APP_AUTH_DOMAIN=${{ secrets.REACT_APP_AUTH_DOMAIN }} >> .env.local
-          echo REACT_APP_PROJECT_ID=${{ secrets.REACT_APP_PROJECT_ID }} >> .env.local
-          echo REACT_APP_STORAGE_BUCKET=${{ secrets.REACT_APP_STORAGE_BUCKET }} >> .env.local
-          echo REACT_APP_MESSAGING_CENTER_ID=${{ secrets.REACT_APP_MESSAGING_CENTER_ID }} >> .env.local
+          echo REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }} >> .env
+          echo REACT_APP_AUTH_DOMAIN=${{ secrets.REACT_APP_AUTH_DOMAIN }} >> .env
+          echo REACT_APP_PROJECT_ID=${{ secrets.REACT_APP_PROJECT_ID }} >> .env
+          echo REACT_APP_STORAGE_BUCKET=${{ secrets.REACT_APP_STORAGE_BUCKET }} >> .env
+          echo REACT_APP_MESSAGING_CENTER_ID=${{ secrets.REACT_APP_MESSAGING_CENTER_ID }} >> .env
           echo REACT_APP_ID=${{ secrets.REACT_APP_ID }} >> .env.local
-          echo REACT_APP_DATABASE_URL=${{ secrets.REACT_APP_DATABASE_URL }} >> .env.local
+          echo REACT_APP_DATABASE_URL=${{ secrets.REACT_APP_DATABASE_URL }} >> .env
       - name: Build dependencies
         run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
