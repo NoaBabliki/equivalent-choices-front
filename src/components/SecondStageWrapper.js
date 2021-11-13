@@ -21,14 +21,6 @@ export class SecondStageWrapper extends React.PureComponent {
     }
 
 
-    componentDidUpdate(){
-        if ((localStorage.getItem('cur_set')) && this.state.cur_set !== parseInt(String(localStorage.getItem('cur_set')), 10)){
-            this.setState({
-                cur_set: parseInt(String(localStorage.getItem('cur_set')), 10)
-            })
-        }
-    }
-
     getOptionForNextMatch(option1, option2, attr_chosen){
         let option_to_return = []
         for (let i = 0; i < 2; i++){
@@ -73,7 +65,6 @@ export class SecondStageWrapper extends React.PureComponent {
             })
         }
         else if (this.state.cur_set <= constants.N_SETS) {
-            localStorage.setItem('cur_set', this.state.cur_set + 1)
             this.getOptionForNextMatch(choices.option1, choices.option2, choices.attr_chosen)
             this.state.cur_set_array.push(choices)
             let new_choices = this.state.choices.slice(0)

@@ -4,6 +4,7 @@ import ChooseOptions from './ChooseOptions';
 import AddCustomItems from './AddCustomItems';
 import RateOptions from './RateOptions';
 import OverallRatings from './OverallRatings.js';
+import DatabaseActions from './DatabaseActions.js';
 
 export class FirstStageWrapper extends React.Component {
 
@@ -12,47 +13,18 @@ export class FirstStageWrapper extends React.Component {
         this.state = {
             flow: 1,
             category_index: 0,
+            save_data: false,
+            read_data: false
         }
         this.setFlow = this.setFlow.bind(this)
     }
-    
-    componentDidMount() {
-        if ((localStorage.getItem('second_stage_flow')) && this.state.flow !== parseInt(String(localStorage.getItem('second_stage_flow')), 10)){
-            this.setState({
-                flow: parseInt(String(localStorage.getItem('second_stage_flow')), 10)
-            })
-        }
-        if ((localStorage.getItem('category_index')) && this.state.category_index !== parseInt(String(localStorage.getItem('category_index')), 10)){
-            this.setState({
-                category_index: parseInt(String(localStorage.getItem('category_index')), 10)
-            })
-        }
-      }
-
-    componentDidUpdate(){
-
-        if ((localStorage.getItem('second_stage_flow')) && this.state.flow !== parseInt(String(localStorage.getItem('second_stage_flow')), 10)){
-            this.setState({
-                flow: parseInt(String(localStorage.getItem('second_stage_flow')), 10)
-            })
-        }
-        if ((localStorage.getItem('category_index')) && this.state.category_index !== parseInt(String(localStorage.getItem('category_index')), 10)){
-            this.setState({
-                category_index: parseInt(String(localStorage.getItem('category_index')), 10)
-            })
-        }
-    }
-
 
     setFlow(){
-        localStorage.setItem('second_stage_flow', this.state.flow + 1)
         this.setState({flow: this.state.flow + 1})
     }
 
     setCategoryIndex(){
-        localStorage.removeItem('second_stage_flow')
         if (this.state.category_index + 1 < this.props.categories.length){
-            localStorage.setItem('category_index', this.state.category_index + 1)
             this.setState({
                 category_index: this.state.category_index + 1,
                 flow: 1,
@@ -60,7 +32,6 @@ export class FirstStageWrapper extends React.Component {
             this.props.setCategoryIndex()
         }
         else{
-            localStorage.removeItem('category_index')
             this.props.setFlow()
         }
     }
@@ -69,12 +40,47 @@ export class FirstStageWrapper extends React.Component {
         const names = [constants.CATEGORY_1, constants.CATEGORY_2]
         return (names[this.state.category_index])     
     }
+
+    setSaveData = () => {
+        this.setState({save_data: !this.state.save_data})
+    }
+
+    setReadData = () => {
+        this.setState({read_data: !this.state.read_data})
+    }
+
+    saveData = () => {
+        this.setSaveData()
+        return (
+            <DatabaseActions
+            action={2}
+            database_name={"client_categories"}
+            item={this.props.client_categories}>
+            </DatabaseActions>
+        )
+    }
+
+    readData = () => {
+        this.setReadData()
+        return (
+            <DatabaseActions
+            action={1}
+            index={this.state.category_index}
+            database_name={"client_categories"}
+            getDatabaseData={this.props.getDatabaseDataClientCategories}>
+            </DatabaseActions>
+        )
+    }
     
 
     render() {
         let flow = this.state.flow
         return(
         <main>
+        <div>
+            {this.state.save_data ? this.saveData() : null}
+            {this.state.read_data? this.readData() : null}
+        </div>
         <div>  
       {(this.props.categories && flow === 1)?
       <ChooseOptions key={this.state.category_index} 
@@ -82,6 +88,7 @@ export class FirstStageWrapper extends React.Component {
         index={this.state.category_index}
         setCategories={this.props.setCategories}
         setCategory={this.setCategory}
+        setSaveData={this.setSaveData}
         setFlow={this.setFlow}>
       </ChooseOptions> : null}
       </div>
@@ -94,6 +101,8 @@ export class FirstStageWrapper extends React.Component {
         addParticipentOptions={this.props.addParticipentOptions}
         numCategories={this.props.categories.length}
         maxId={this.props.max_id}
+        setSaveData={this.setSaveData}
+        setReadData={this.setReadData}
         setFlow={this.setFlow}>
         </AddCustomItems> : null}
       </div>
@@ -102,7 +111,7 @@ export class FirstStageWrapper extends React.Component {
       key={this.state.category_index}
       index={this.state.category_index}
       max_id={this.props.max_id}
-      categories={this.props.categories}
+      categories={this.props.client_categories}
       setCategories={this.props.setCategories}
       setFlow={this.setFlow} >
       </RateOptions> : null}
@@ -112,7 +121,7 @@ export class FirstStageWrapper extends React.Component {
        <OverallRatings
        key={this.state.category_index}
        index={this.state.category_index}
-       categories={this.props.categories}
+       categories={this.props.client_categories}
        setCategories={this.props.setCategories}
        client_categories={this.props.client_categories}
        setFlow={this.setFlow}>

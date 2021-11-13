@@ -9,6 +9,7 @@ export class RateOptions extends React.Component{
         const data = this.props.categories[this.props.index].sort(function(){ return Math.random() - 0.5});
         const paginatedData = data.filter(item => item.id < this.props.max_id)
         const restOfData = data.filter(item => item.id >= this.props.max_id)
+        console.log(restOfData)
         this.state = {
             category_items: paginatedData,
             rest_of_data: restOfData,

@@ -18,7 +18,7 @@ export class ChooseOptions extends React.PureComponent {
             category: this.props.setCategory(),
             category_arr: paginatedData,
             category_to_add: items_left,
-            category_catche: []
+            category_catche: [],
         }
     }
 
@@ -104,8 +104,9 @@ export class ChooseOptions extends React.PureComponent {
     }
 
     nextButtonAction = () => {
+        this.props.setSaveData()
         this.props.setCategories(this.state.category_arr)
-        this.props.setFlow()  
+        this.props.setFlow()
     }
 
     showUndoButton = () => {
@@ -114,7 +115,6 @@ export class ChooseOptions extends React.PureComponent {
         )
     }
 
-   
     render() {
         return (
             <div>

@@ -29,14 +29,6 @@ export class AddCustomItems extends React.PureComponent {
         this.sliderChange = this.sliderChange.bind(this);
     }
 
-    componentDidUpdate(){
-        if ((localStorage.getItem('option_index')) && this.state.flow !== parseInt(String(localStorage.getItem('option_index')), 10)){
-            this.setState({
-                current_option_index: parseInt(String(localStorage.getItem('option_index')), 10)
-            })
-        }
-    }
-
     main(){
         return (
             <div>
@@ -84,7 +76,6 @@ export class AddCustomItems extends React.PureComponent {
     }
 
     handleSubmit(event){
-        localStorage.setItem('option_index', this.state.current_option_index + 1)
         let newOption = {
             id: this.props.maxId + this.state.current_option_index,
             name: this.state.current_option_name,
@@ -159,7 +150,8 @@ export class AddCustomItems extends React.PureComponent {
     }
 
     nextButtonAction(){
-        localStorage.removeItem('option_index')
+        this.props.setSaveData()
+        this.props.setReadData()
         this.props.setFlow()
     }
 
