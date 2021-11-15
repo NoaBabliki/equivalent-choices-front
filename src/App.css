@@ -30,6 +30,15 @@
   overflow: hidden;
 }
 
+.instructions-bold {
+  font-weight:normal;
+  margin-left: 50px;
+  margin-right: 100px;
+  display: inline-block;
+  overflow: hidden;
+  font-weight:bold;
+}
+
 .option-name {
   margin-left: 50px;
   margin-right: 100px;
@@ -52,7 +61,7 @@
 }
 
 .next-button {
-  margin-left: 50px;
+  margin-left: 560px;
   margin-bottom: 50px;
 }
 
@@ -237,6 +246,7 @@
 }
 
 .table-button {
-  width:100%;
+  width:100px;
+  height: 50px;
   background-color: whitesmoke;
 }

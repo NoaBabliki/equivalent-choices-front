@@ -9,8 +9,9 @@ import DatabaseActions from './components/DatabaseActions';
 
 
 const FIRST_TITLE = 'Welcome'
-const SECOND_TITLE_PART_1 = 'What do you prefer?'
-const SECOND_TITLE_PART_2 = 'Make the two options equal'
+const INTRODUCTION = 'Welcome to the equivalent choices experiment! Follow the instructions on the screen, and press the "next" button when you\'re done with the screen.'
+const SECOND_TITLE_PART_1 = 'Part 1: what do you prefer?'
+const SECOND_TITLE_PART_2 = 'Part 2: make the two options equal'
 const INSTRUCTIONS_PART_1 = 'In this task, we ask you to rate your preferences in a given category. You will see different options in a given category. Please rate them one by one on a scale of 1-1000.'
 const INSTRUCTIONS_PART_2 = 'In this task, we ask you to compare between two options, each including a ' + constants.CATEGORY_1_SINGULAR + ' and a ' + constants.CATEGORY_2_SINGULAR + '. At each screen, you will see two options and their attributes, with one attribute value missing. Please type in an attribute value that will make the two options equally preferred, from the pools of the first task.'
 
@@ -210,6 +211,7 @@ writeClientCategoriesToDatabase = () => {
         first_title={FIRST_TITLE}
         second_title={title_2}
         instructions={instructions}
+        introduction={INTRODUCTION}
         flow={this.state.flow}
         setFlow={this.setFlow}>
         </StartExperiment> : null}
@@ -220,6 +222,7 @@ writeClientCategoriesToDatabase = () => {
         categories={this.state.categories}
         client_categories={this.state.client_catigories}
         max_id={this.state.max_id}
+        instructions={INSTRUCTIONS_PART_1}
         setCategories={this.setCategories}
         addParticipentOptions={this.addParticipentOptions}
         setCategoryIndex={this.setCategoryIndex}
