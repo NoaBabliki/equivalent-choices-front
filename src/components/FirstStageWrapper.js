@@ -87,6 +87,7 @@ export class FirstStageWrapper extends React.Component {
         categories={this.props.categories} 
         index={this.state.category_index}
         setCategories={this.props.setCategories}
+        instructions={this.props.instructions}
         setCategory={this.setCategory}
         setSaveData={this.setSaveData}
         setFlow={this.setFlow}>
@@ -106,7 +107,7 @@ export class FirstStageWrapper extends React.Component {
         setFlow={this.setFlow}>
         </AddCustomItems> : null}
       </div>
-      <div>{(flow === 3 && this.props.categories)?
+      <div>{(flow === 0 && this.props.categories)?
       <RateOptions
       key={this.state.category_index}
       index={this.state.category_index}
@@ -117,7 +118,7 @@ export class FirstStageWrapper extends React.Component {
       </RateOptions> : null}
       </div>
       <div>
-        {(flow === 4 && this.props.categories)?
+        {(flow === 3 && this.props.categories)?
        <OverallRatings
        key={this.state.category_index}
        index={this.state.category_index}
@@ -128,7 +129,7 @@ export class FirstStageWrapper extends React.Component {
        </OverallRatings>: null}
       </div>
       <div>
-          {flow === 5? this.setCategoryIndex(): null}
+          {flow === 4? this.setCategoryIndex(): null}
       </div>
         </main>)
     }

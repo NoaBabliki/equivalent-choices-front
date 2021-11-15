@@ -22,7 +22,7 @@ const SelectOptionTable = (props) => {
     }
 
     function createTable(){
-        const n_cols = 4
+        const n_cols = 5
         var two_d_data = []
         const category_arr_copy = shuffled_category.slice(0)
         while(category_arr_copy.length) two_d_data.push(category_arr_copy.splice(0,n_cols));

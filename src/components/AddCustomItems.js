@@ -4,9 +4,9 @@ import * as constants from '../constants.js'
 import Slider from './Slider';
 
 const INSTRUCTIONS_PART_1 = 'In addition to the previous options, you can add'
-const INSTRUCTIONS_PART_2 = 'more options of your own to category'
-const INSTRUCTIONS_PART_3 = 'Please add options that are close to the edges of the preference scale - very highly preferred (close to'
-const INSTRUCTIONS_PART_4 = ') or very lowly preferred (close to'
+const INSTRUCTIONS_PART_2 = 'more options of your own to the category'
+const INSTRUCTIONS_PART_3 = 'Please add options that are close to the edges of the preference scale - very highly preferred (close to '
+const INSTRUCTIONS_PART_4 = ') or very lowly preferred (close to '
 const INSTRUCTIONS_PART_5 = ').'
 const INSTRUCTIONS_PART_6 = 'Please add an option and rate it (option'
 const INSTRUCTIONS_PART_7 = 'out of'
@@ -52,7 +52,7 @@ export class AddCustomItems extends React.PureComponent {
     }
 
     showInstructions(){
-
+        const middle = Math.round(constants.NUM_CUSTOM_OPTIONS / 2)
         return(
             <div>
             <h3 className='instructions'>{INSTRUCTIONS_PART_1}</h3>
@@ -66,6 +66,7 @@ export class AddCustomItems extends React.PureComponent {
             <h3 className='instructions'>{INSTRUCTIONS_PART_7}</h3>
             <h3 className='category-name'>{constants.NUM_CUSTOM_OPTIONS}</h3>
             <h3 className='instructions'>{INSTRUCTIONS_PART_5}</h3>
+            {(this.state.options_added.length >= middle) && (this.state.options_added.length < constants.NUM_CUSTOM_OPTIONS) ? this.askForDiversion() : null}
             </div>
         )
     }
@@ -118,6 +119,8 @@ export class AddCustomItems extends React.PureComponent {
         let disable_submit = this.disableSubmit()
         return(
             <div>
+                { !this.state.disable_option_adding ?
+                <div>
                 <label className='instructions'>
                     Option Name: 
                     <input className='instructions' type="text" disabled={this.state.disable_option_adding} value={this.state.current_option_name} onChange={this.handleChange}></input>
@@ -126,6 +129,11 @@ export class AddCustomItems extends React.PureComponent {
                 {this.optionSlider()}
                 </div>
                 <input className='submit-button' type="submit" value="submit" disabled={disable_submit} onClick={this.handleSubmit}></input>
+                </div> : null}
+                <div>
+                {(this.state.current_option_name !== "") && disable_submit && (this.state.current_option_rating !== this.setRatingToMiddle()) ?
+                <h4 className="warning">Please pick an option you have an extreme preference towards - lower than {constants.MIN_RATING + constants.RATING_MARGIN} or higher than {constants.MAX_RATING - constants.RATING_MARGIN}</h4> : null}
+                </div>
             </div>
         )
 
@@ -153,6 +161,30 @@ export class AddCustomItems extends React.PureComponent {
         this.props.setSaveData()
         this.props.setReadData()
         this.props.setFlow()
+    }
+
+    askForDiversion(){
+        let counter_high = 0
+        let counter_low = 0
+        let middle = Math.round(constants.NUM_CUSTOM_OPTIONS / 2)
+        for (var i=0; i<this.state.options_added.length; i++){
+            if (this.state.options_added[i].rating < constants.RATING_MARGIN){
+                counter_low += 1
+            }
+            else {
+                counter_high += 1
+            }
+        }
+        if (counter_high >= middle){
+            return (
+                <h3 className="instructions-bold">Please make sure the next options you add are lowly preferred (close to {constants.MAX_RATING})</h3>
+            )
+        }
+        if (counter_low >= middle){
+            return (
+                <h3 className="instructions-bold">Please make sure the next options you add are highly preferred (close to {constants.MIN_RATING})</h3>
+            )
+        }
     }
 
     //participent types the option in the box in addOption

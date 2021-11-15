@@ -1,3 +1,4 @@
+import * as constants from '../constants'
 import React from 'react'
 import Slider from './Slider.js'
 
@@ -62,11 +63,20 @@ export class OverallRatings extends React.Component {
                 key={option.id}
                 index={index}
                 disabled={false}
-                default_rating={option.rating}
+                default_rating={this.getRating(option)}
                 getValue={this.sliderChange}>
             </Slider>: null}
         </td>            
         )
+    }
+
+    getRating(option){
+        if (option.rating !== 0){
+            return (option.rating)
+        }
+        else{
+            return (Math.round((constants.MAX_RATING - constants.MIN_RATING) / 2))
+        }
     }
 
     nextButtonAction(){

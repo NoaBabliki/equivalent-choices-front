@@ -44,7 +44,7 @@ export class StartExperiment extends React.PureComponent {
                 {(this.props.flow === 3 && this.state.page === 1)?
                 this.setState({page: this.state.page + 1}) :
                 this.state.page === 1?
-                this.showPage(this.props.first_title, '', CLASS_NAME_WELCOME) : 
+                this.showPage(this.props.first_title, this.props.introduction, CLASS_NAME_WELCOME) : 
                 this.state.page === 2?
                 this.showPage(this.props.second_title, '', CLASS_NAME_WELCOME) : 
                 this.state.page === 3?

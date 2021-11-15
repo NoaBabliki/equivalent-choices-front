@@ -6,7 +6,7 @@ const ThankYouScreen = (props) => {
     return (
         <div>
             {localStorage.clear()}
-            <h3 className='instructions'>Thank you for your participation! The Hart lab thanks you.</h3>
+            <h3 className='instructions'>Thank you for your participation! The ComDePri lab thanks you.</h3>
         </div>
     )
 

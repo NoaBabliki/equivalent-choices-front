@@ -76,7 +76,7 @@ export class ChooseOptions extends React.PureComponent {
 
 
     createTable(){
-        const n_cols = 4
+        const n_cols = 6
         var two_d_data = []
         const category_arr_copy = this.state.category_arr.slice(0)
         while(category_arr_copy.length) two_d_data.push(category_arr_copy.splice(0,n_cols));
@@ -118,11 +118,12 @@ export class ChooseOptions extends React.PureComponent {
     render() {
         return (
             <div>
+                <h3 className='instructions'>{this.props.instructions}</h3>
                 <h3 className='instructions'>{INSTRUCTIONS_PART_1}</h3>
                 <h3 className='category-name'>{this.state.category}</h3>
                 <h3 className='instructions'>{INSTRUCTIONS_PART_2}</h3>
-                {this.props.categories ? this.createTable(): null}
                 <h3 className='instructions'>{INSTRUCTIONS_PART_3}</h3>
+                {this.props.categories ? this.createTable(): null}
                     {this.showUndoButton()}
                 <h3 className='continue'>{INSTRUCTIONS_PART_4}</h3>
                 <button className='next-button' onClick={()=>{this.nextButtonAction()}}>next</button>
