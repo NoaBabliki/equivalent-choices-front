@@ -15,11 +15,11 @@ export class CompareTwoOptions extends React.PureComponent{
         super(props)
         this.state = {
             cur_chosen: null,
+            categories_to_choose: this.props.categories,
             attr_array: this.chooseAttribues(),
             disable_next: true,
             call_timer: true,
             show_dialog_box: false,
-            categories_to_choose: this.props.categories
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.setDisableNext = this.setDisableNext.bind(this)
@@ -65,15 +65,24 @@ export class CompareTwoOptions extends React.PureComponent{
         else{
             this.fillOneOption(attr_array, rand_index, half_length, attr_array.length, 0, half_length, arrays, half_length)
         }
-        this.filerCategpries()
+        this.filerCategpries(rand_index, attr_array)
         this.attentionCheck(attr_array, rand_index, is_attention_check, half_length)
     }
 
-    filerCategpries(){
+    filerCategpries(rand_index, attr_array){
         let new_categories = this.props.categories.slice(0)
-        new_categories[0].filter(item => !this.props.cur_option.includes(item))
-        new_categories[1].filter(item => !this.props.cur_option.includes(item))
-        this.setState({categories_to_choose: new_categories})
+        if (rand_index === 0 || rand_index === 1){
+            let new_0 = new_categories[0].filter(item => item !== attr_array[2])
+            let new_1 = new_categories[1].filter(item => item !== attr_array[3])
+            new_categories = [new_0, new_1]
+            this.setState({categories_to_choose: new_categories})
+        }
+        else{
+            let new_0 = new_categories[0].filter(item => item !== attr_array[0])
+            let new_1 = new_categories[1].filter(item => item !== attr_array[1])
+            new_categories = [new_0, new_1]
+            this.setState({categories_to_choose: new_categories})
+        }
     }
 
     fillAllAttributes(attr_array, rand_index, arrays, half_length){
