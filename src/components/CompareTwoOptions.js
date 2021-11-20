@@ -19,7 +19,7 @@ export class CompareTwoOptions extends React.PureComponent{
             disable_next: true,
             call_timer: true,
             show_dialog_box: false,
-            categories_to_choose: this.props.categories_to_choose
+            categories_to_choose: this.props.categories
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.setDisableNext = this.setDisableNext.bind(this)
@@ -61,11 +61,20 @@ export class CompareTwoOptions extends React.PureComponent{
         }
         else if (rand_index < half_length){
             this.fillOneOption(attr_array, rand_index, 0, half_length, half_length, attr_array.length, arrays, half_length)
+            this.filerCategpries()
         }
         else{
             this.fillOneOption(attr_array, rand_index, half_length, attr_array.length, 0, half_length, arrays, half_length)
+            this.filerCategpries()
         }
         this.attentionCheck(attr_array, rand_index, is_attention_check, half_length)
+    }
+
+    filerCategpries(){
+        let new_categories = this.props.categories.slice(0)
+        new_categories[0].filter(item => !this.props.cur_option.includes(item))
+        new_categories[1].filter(item => !this.props.cur_option.includes(item))
+        this.setState({categories_to_choose: new_categories})
     }
 
     fillAllAttributes(attr_array, rand_index, arrays, half_length){
@@ -74,7 +83,7 @@ export class CompareTwoOptions extends React.PureComponent{
                 attr_array[rand_index] = null
             }
             else{
-                let array = arrays[i % half_length]
+                let array = arrays[i % half_length].filter(item => !attr_array.includes(item))
                 let rand_attr = array[Math.floor(Math.random() * array.length)]
                 attr_array[i] = rand_attr
                 arrays[i % half_length] = arrays[i % half_length].filter(item => item !== rand_attr)
@@ -84,13 +93,33 @@ export class CompareTwoOptions extends React.PureComponent{
 
     attentionCheck(attr_array, rand_index, is_attention_check, half_length){
         if (is_attention_check < constants.ATTENTION_TRIALS){
+            var index
+            var attr
             for (let j = 0; j < half_length; j ++)
             {
                 if (rand_index % half_length !== j){
+                    if (this.props.cur_option.includes(attr_array[j])){
+                        attr_array[j + half_length] = attr_array[j]
+                    }
+                    else{
+                        attr_array[j] = attr_array[j + half_length]
+                    }
                     attr_array[j + half_length] = attr_array[j]
+                    index = (rand_index % half_length)
+                    if (attr_array[index]){
+                        attr = attr_array[index]
+                    }
+                    else{
+                        attr = attr_array[index + half_length]
+                    }
                 }
             }
-            this.setState({categories_to_choose: this.props.categories})
+            let new_categories = this.props.categories.slice(0)
+            if (!new_categories[index].includes(attr))
+            {
+                new_categories[index].push(attr)
+                this.setState({categories_to_choose: new_categories})
+            }
         }
     }
 
