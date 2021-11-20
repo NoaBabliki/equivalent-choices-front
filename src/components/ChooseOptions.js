@@ -2,9 +2,9 @@ import React from 'react'
 import '../App.css'
 import * as constants from '../constants.js'
 
-const INSTRUCTIONS_PART_1 = 'These are the options for'
+const INSTRUCTIONS_PART_1 = '\nThese are the options for'
 const INSTRUCTIONS_PART_2 = 'you will be asked to rate:'
-const INSTRUCTIONS_PART_3 = 'Please click on any option you don’t understand or have no preference for to replace it with a different one.'
+const INSTRUCTIONS_PART_3 = '\nPlease click on any option you don’t understand or have no preference for to replace it with a different one.'
 const INSTRUCTIONS_PART_4 = 'After replacing options, press the next button to continue.'
 const WARNING_MSG = 'No more alternatives to choose from.'
 
@@ -119,10 +119,10 @@ export class ChooseOptions extends React.PureComponent {
         return (
             <div>
                 <h3 className='instructions'>{this.props.instructions}</h3>
+                <h3 className='instructions'>{INSTRUCTIONS_PART_3}</h3>
                 <h3 className='instructions'>{INSTRUCTIONS_PART_1}</h3>
                 <h3 className='category-name'>{this.state.category}</h3>
                 <h3 className='instructions'>{INSTRUCTIONS_PART_2}</h3>
-                <h3 className='instructions'>{INSTRUCTIONS_PART_3}</h3>
                 {this.props.categories ? this.createTable(): null}
                     {this.showUndoButton()}
                 <h3 className='continue'>{INSTRUCTIONS_PART_4}</h3>

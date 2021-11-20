@@ -19,6 +19,7 @@ export class CompareTwoOptions extends React.PureComponent{
             disable_next: true,
             call_timer: true,
             show_dialog_box: false,
+            categories_to_choose: this.props.categories
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.setDisableNext = this.setDisableNext.bind(this)
@@ -89,6 +90,7 @@ export class CompareTwoOptions extends React.PureComponent{
                     attr_array[j + half_length] = attr_array[j]
                 }
             }
+            this.setState({categories_to_choose: this.props.categories_to_choose})
         }
     }
 
@@ -158,7 +160,7 @@ export class CompareTwoOptions extends React.PureComponent{
             <div>
                 <OptionBox
                 index={1}
-                categories={this.props.categories_to_choose}
+                categories={this.state.categories_to_choose}
                 attr1={this.state.attr_array[0]}
                 attr2={this.state.attr_array[1]}
                 disable={this.state.show_dialog_box}
@@ -167,7 +169,7 @@ export class CompareTwoOptions extends React.PureComponent{
                 </OptionBox>
                 <OptionBox
                 index={2}
-                categories={this.props.categories_to_choose}
+                categories={this.state.categories_to_choose}
                 attr1={this.state.attr_array[2]}
                 attr2={this.state.attr_array[3]}
                 disable={this.state.show_dialog_box}

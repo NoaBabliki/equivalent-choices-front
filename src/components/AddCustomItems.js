@@ -22,7 +22,8 @@ export class AddCustomItems extends React.PureComponent {
             disable_next_button: true,
             current_option_name: "",
             current_option_rating: this.setRatingToMiddle(),
-            disable_option_adding: false
+            disable_option_adding: false,
+            diversion: 0
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -103,14 +104,27 @@ export class AddCustomItems extends React.PureComponent {
     }
 
     disableSubmit(){
+        const NO_DIVERSION = 0
+        const LOW = 1
+        const HIGH = 2
         const close_to_max = (constants.MAX_RATING - this.state.current_option_rating < constants.RATING_MARGIN)
         const close_to_min = (constants.MIN_RATING + this.state.current_option_rating < constants.RATING_MARGIN)
-        if ((close_to_min || close_to_max) && this.state.current_option_name){
-           return (false)
+        var legal_rating
+        if (this.state.diversion === NO_DIVERSION) {
+            legal_rating = (close_to_min || close_to_max)
         }
-        else{
-            return (true)
+        if (this.state.diversion === LOW) {
+           legal_rating = close_to_min
+        } 
+        if (this.state.diversion === HIGH) {
+            legal_rating = close_to_max
         }
+        if (legal_rating && this.state.current_option_name){
+            return (false)
+         }
+         else {
+             return (true)
+         }
     }
 
 
@@ -176,13 +190,15 @@ export class AddCustomItems extends React.PureComponent {
             }
         }
         if (counter_high >= middle){
+            this.setState({diversion: 1})
             return (
-                <h3 className="instructions-bold">Please make sure the next options you add are lowly preferred (close to {constants.MAX_RATING})</h3>
+                <h3 className="instructions-bold">Please make sure the next options you add are lowly preferred (close to {constants.MIN_RATING})</h3>
             )
         }
         if (counter_low >= middle){
+            this.setState({diversion: 2})
             return (
-                <h3 className="instructions-bold">Please make sure the next options you add are highly preferred (close to {constants.MIN_RATING})</h3>
+                <h3 className="instructions-bold">Please make sure the next options you add are highly preferred (close to {constants.MAX_RATING})</h3>
             )
         }
     }
@@ -198,8 +214,8 @@ export class AddCustomItems extends React.PureComponent {
                 this.main() : this.nextButtonAction()}
                 {this.state.current_option_index !== constants.NUM_CUSTOM_OPTIONS?
                 null : this.disableNextButton()}
-                <button className='next-button' disabled={this.state.disable_next_button} 
-                onClick={()=>{this.nextButtonAction()}}>next</button>
+                {this.state.current_option_index === constants.NUM_CUSTOM_OPTIONS?
+                this.nextButtonAction() : null}
             </div>
         )
     }

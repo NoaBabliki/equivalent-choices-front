@@ -15,7 +15,7 @@ export class SecondStageWrapper extends React.PureComponent {
             cur_set_array:[],
             choices: [],
             cur_option: [],
-            cur_set_categories: this.props.categories
+            cur_set_categories: this.props.categories,
         }
         this.setFlow = this.setFlow.bind(this)
     }
