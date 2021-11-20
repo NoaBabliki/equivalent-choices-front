@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.main {
+  max-width: 1160px;
+}
+
 .title-1 {
   text-align: center;
   margin-top: 100px;

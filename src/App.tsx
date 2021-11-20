@@ -200,7 +200,7 @@ writeClientCategoriesToDatabase = () => {
       instructions = INSTRUCTIONS_PART_2
     }
     return( 
-    <main>
+    <main className='main'>
         <div>
         {this.getCategoriesFromFirebase()}
         {this.state.write_choices ? this.writeChoices() : null}
