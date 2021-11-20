@@ -61,12 +61,11 @@ export class CompareTwoOptions extends React.PureComponent{
         }
         else if (rand_index < half_length){
             this.fillOneOption(attr_array, rand_index, 0, half_length, half_length, attr_array.length, arrays, half_length)
-            this.filerCategpries()
         }
         else{
             this.fillOneOption(attr_array, rand_index, half_length, attr_array.length, 0, half_length, arrays, half_length)
-            this.filerCategpries()
         }
+        this.filerCategpries()
         this.attentionCheck(attr_array, rand_index, is_attention_check, half_length)
     }
 
