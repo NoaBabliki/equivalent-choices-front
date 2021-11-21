@@ -6,7 +6,6 @@ import SelectOptionTable from './SelectOptionTable'
 
 const OptionBox = (props) => {
 
-
     const showSlider = (title, index) => {
         return(
             <SelectOptionTable

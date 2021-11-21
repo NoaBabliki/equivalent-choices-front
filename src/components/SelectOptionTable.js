@@ -63,7 +63,7 @@ const SelectOptionTable = (props) => {
         <label className='option-attr'>
             {props.title}:
         </label>
-        <button className='radio-option' disabled={props.disable} onClick={()=>{setShow(!show)}}>{chosen.name}</button>
+        <button className='option-button' disabled={props.disable} onClick={()=>{setShow(!show)}}>{chosen.name}</button>
         {show? createTable(): null}
         </div>
     )
