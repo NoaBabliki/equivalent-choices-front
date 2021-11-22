@@ -126,7 +126,9 @@ export class CompareTwoOptions extends React.PureComponent{
             if (!new_categories[index].includes(attr))
             {
                 new_categories[index].push(attr)
-                this.setState({categories_to_choose: new_categories})
+                this.setState({
+                    categories_to_choose: new_categories
+                })
             }
         }
     }
@@ -193,11 +195,17 @@ export class CompareTwoOptions extends React.PureComponent{
     }
 
     showOptions(){
-        return (
+        let new_categories = this.state.categories_to_choose
+        if (this.state.attr_array[0] !== this.state.attr_array[2] && this.state.attr_array[1] !== this.state.attr_array[3]){
+            new_categories = this.state.categories_to_choose.map(sub_array =>
+                sub_array.filter(item =>
+                    !this.state.attr_array.includes(item)))
+        }
+        return(
             <div>
                 <OptionBox
                 index={1}
-                categories={this.state.categories_to_choose}
+                categories={new_categories}
                 attr1={this.state.attr_array[0]}
                 attr2={this.state.attr_array[1]}
                 disable={this.state.show_dialog_box}
@@ -206,7 +214,7 @@ export class CompareTwoOptions extends React.PureComponent{
                 </OptionBox>
                 <OptionBox
                 index={2}
-                categories={this.state.categories_to_choose}
+                categories={new_categories}
                 attr1={this.state.attr_array[2]}
                 attr2={this.state.attr_array[3]}
                 disable={this.state.show_dialog_box}
