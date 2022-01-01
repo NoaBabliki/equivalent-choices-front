@@ -177,13 +177,21 @@
   float: left;
 }
 
+.button-dialog {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  font-size:15px;
+  cursor: pointer;
+}
+
 .dialog-box {
   border: 1px solid black;
   background: lightgray;
   position:absolute;
   top: 300px;
   left: 250px;
-  width: 335px;
+  width: 350px;
   height: 250px;
   bottom: 50px;
 }
@@ -206,7 +214,6 @@
   left: -30px;
   margin-top: 20px;
   margin-left: 5px;
-  margin-right: 5px;
 }
 
 .under {
