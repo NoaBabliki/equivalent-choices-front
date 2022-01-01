@@ -19,6 +19,7 @@ export class ChooseOptions extends React.PureComponent {
             category_arr: paginatedData,
             category_to_add: items_left,
             category_catche: [],
+            loading: false,
         }
     }
 
@@ -115,6 +116,29 @@ export class ChooseOptions extends React.PureComponent {
         )
     }
 
+    componentDidMount() {
+        if (this.props.categories && (this.state.loading === true)){
+            this.setState({loading: false})
+        }
+        else if (!this.props.categories){
+            this.setState({loading: !this.state.loading})
+        }
+    }
+    componentDidUpdate() {
+        if (this.props.categories && (this.state.loading === true)){
+            this.setState({loading: false})
+        }
+        else if (!this.props.categories){
+            this.setState({loading: !this.state.loading})
+        }
+    }
+
+    showLoading = () =>{
+        return (
+            <h3>Loading...</h3>
+        )
+    }
+
     render() {
         return (
             <div>
@@ -123,7 +147,7 @@ export class ChooseOptions extends React.PureComponent {
                 <h3 className='instructions'>{INSTRUCTIONS_PART_1}</h3>
                 <h3 className='category-name'>{this.state.category}</h3>
                 <h3 className='instructions'>{INSTRUCTIONS_PART_2}</h3>
-                {this.props.categories ? this.createTable(): null}
+                {this.props.categories ? this.createTable(): this.showLoading()}
                     {this.showUndoButton()}
                 <h3 className='continue'>{INSTRUCTIONS_PART_4}</h3>
                 <button className='next-button' onClick={()=>{this.nextButtonAction()}}>next</button>

@@ -109,6 +109,9 @@ export class AddCustomItems extends React.PureComponent {
         const HIGH = 2
         const close_to_max = (constants.MAX_RATING - this.state.current_option_rating < constants.RATING_MARGIN)
         const close_to_min = (constants.MIN_RATING + this.state.current_option_rating < constants.RATING_MARGIN)
+        if (this.state.options_added.some(item => this.state.current_option_name === item.name)){
+            return(true)
+        }
         var legal_rating
         if (this.state.diversion === NO_DIVERSION) {
             legal_rating = (close_to_min || close_to_max)
@@ -146,7 +149,9 @@ export class AddCustomItems extends React.PureComponent {
                 </div> : null}
                 <div>
                 {(this.state.current_option_name !== "") && disable_submit && (this.state.current_option_rating !== this.setRatingToMiddle()) ?
-                <h4 className="warning">Please pick an option you have an extreme preference towards - lower than {constants.MIN_RATING + constants.RATING_MARGIN} or higher than {constants.MAX_RATING - constants.RATING_MARGIN}</h4> : null}
+                <div>
+                <h4 className="warning">Please pick an option you have an extreme preference towards - lower than {constants.MIN_RATING + constants.RATING_MARGIN} or higher than {constants.MAX_RATING - constants.RATING_MARGIN}.</h4>
+                <h4 className="warning">Do not enter the same option name twice.</h4> </div> : null}
                 </div>
             </div>
         )

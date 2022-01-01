@@ -40,7 +40,6 @@ auth.onAuthStateChanged((user)=>{
     }
 })
 
-
 const DatabaseActions = (props) => {
     
     const READ_ONCE = 1

@@ -14,7 +14,8 @@ export class FirstStageWrapper extends React.Component {
             flow: 1,
             category_index: 0,
             save_data: false,
-            read_data: false
+            read_data: false,
+            loading: false,
         }
         this.setFlow = this.setFlow.bind(this)
     }
@@ -70,6 +71,23 @@ export class FirstStageWrapper extends React.Component {
             getDatabaseData={this.props.getDatabaseDataClientCategories}>
             </DatabaseActions>
         )
+    }
+
+    componentDidMount() {
+        if (this.props.categories && (this.state.loading === true)){
+            this.setState({loading: false})
+        }
+        else if (!this.props.categories){
+            this.setState({loading: !this.state.loading})
+        }
+    }
+    componentDidUpdate() {
+        if (this.props.categories && (this.state.loading === true)){
+            this.setState({loading: false})
+        }
+        else if (!this.props.categories){
+            this.setState({loading: !this.state.loading})
+        }
     }
     
 
