@@ -1,3 +1,4 @@
+import { on } from 'events'
 import { useState } from 'react'
 import '../App.css'
 
@@ -16,23 +17,28 @@ const DialogBox = (props) => {
         setDisable(false)
     }
 
+    const onTextClick = (value) => {
+        setAnswer(value)
+        onChange(value)
+    }
+
     return (
         <div className='dialog-box'>
             <label className='option-title'>{QUESTION}</label>
             <div>
                 <input type="radio" checked={answer === 1} className="radio-option" onChange={()=>{onChange(1)}}/> 
                 <label className="radio-title"> 
-                {<button className='button-dialog' onClick={()=> setAnswer(1)}>{OPTION_1}</button>} 
+                {<button className='button-dialog' onClick={()=> onTextClick(1)}>{OPTION_1}</button>} 
                 </label>
                 <div className='under'></div>
                 <input type="radio" checked={answer === 2} className="radio-option" onChange={()=>{onChange(2)}}/>
                 <label className="radio-title"> 
-                {<button className='button-dialog' onClick={()=> setAnswer(2)}>{OPTION_2}</button>} 
+                {<button className='button-dialog' onClick={()=> onTextClick(2)}>{OPTION_2}</button>} 
                 </label>
                 <div className='under'></div>
                 <input type="radio" checked={answer === 3} className="radio-option" onChange={()=>{onChange(3)}}/>
                 <label className="radio-title"> 
-                {<button className='button-dialog' onClick={()=> setAnswer(3)}>{OPTION_3}</button>} 
+                {<button className='button-dialog' onClick={()=> onTextClick(3)}>{OPTION_3}</button>} 
                 </label>
             </div>
             <button className='confirm-button' disabled={disable} onClick={()=>{props.save_answer(answer)}}>Confirm</button>
