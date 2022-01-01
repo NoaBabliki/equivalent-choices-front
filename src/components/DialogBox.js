@@ -12,8 +12,8 @@ const DialogBox = (props) => {
     const [disable, setDisable] = useState(true)
 
     const onChange = (value) => {
-        setAnswer(value)
         setDisable(false)
+        setAnswer(value)
     }
 
     return (
